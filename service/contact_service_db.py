@@ -8,9 +8,8 @@ def regist_contact(contact):
 
     insert_query = "insert into contact values(?,?,?,?)"
     con = sqlite3.connect('conntact.db')
-
     cur = con.cursor()
-    cur.execute(insert_query,('kim','010-3333-4444','kim@daum.net',41))
+    cur.execute(insert_query,(contact.name,contact.hpnum,contact.email,contact.age))
     con.commit()
     con.close()
 
@@ -60,8 +59,14 @@ def remove_contcat(name):
     pass
 
 def search_contcat(name):
-    pass
 
+    con = sqlite3.connect('conntact.db')
+
+    cur = con.cursor()
+    cur.execute('select * from contact where name = ?',(name,))
+    a_record = cur.fetchall()
+    con.close()
+    return a_record
 
 
 if __name__ == "__main__":

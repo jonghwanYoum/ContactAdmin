@@ -2,7 +2,7 @@
 main executable Moduel
 """
 from model.contact import  Contact
-import service.contact_service as svc
+import service.contact_service_db as svc
 
 """
 def _init_contact():
@@ -14,6 +14,13 @@ import sqlite3
 
 def main():
 
+    contact = Contact('han','011-3333-2222','han@daum.net',25)
+    #svc.regist_contact(contact)
+    #print('등록 완료')
+    a_list = svc.search_contcat('han')
+    print(a_list)
+
+""""
     create_table_query = 'create table contact(name text, hpnum text, email text, age int);'
     insert_query = "insert into contact values(?,?,?,?)"
     con = sqlite3.connect('conntact.db')
@@ -30,6 +37,8 @@ def main():
     #con.commit()
 
     con.close()
+"""
+
 
 
 
